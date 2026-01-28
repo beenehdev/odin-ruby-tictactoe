@@ -3,10 +3,10 @@
 # documentation
 class Board
   def initialize
-    aa
+    @moves = []
   end
 
-  def assign_to_board
+  def assign_play_input
     aa
   end
 

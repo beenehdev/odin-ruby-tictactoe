@@ -22,7 +22,7 @@ class PlayerInput
 
   def pass_to_board
     # send play to board, get return value 1 for legal, 0 for illegal
-    # if legal, swap player_flag
+    # if legal, ask to swap player flag
     # if illegal, warn player, reprompt for legal turn
   end
 end
