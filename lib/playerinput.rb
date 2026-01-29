@@ -3,7 +3,8 @@
 # documentation
 class PlayerInput
   def initialize
-    @player_flag = true
+    @player_one = :X
+    @player_two = :O
   end
 
   def take_turn
@@ -16,7 +17,7 @@ class PlayerInput
   end
 
   def validate_input
-    nil if @play[0] == A || B || C and @play[1] == 1 || 2 || 3
+    nil if %w[A B C].include?(@play[0]) && %w[1 2 3].include?(@play[1])
     # Warn player, prompt again
   end
 

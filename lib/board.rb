@@ -7,16 +7,16 @@ class Board
   end
 
   def assign_play_input
-    aa
+    board_variable = Array.new(3) { Array.new(3, :_) }
   end
 
   def draw_board
     # pseudocode puts
-    #  _ _ _
-    # |_|_|_| 1
-    # |_|_|_| 2
-    # |_|_|_| 3
-    #  A B C
+    puts " _ _ _"
+    puts "|_|_|_| 1"
+    puts "|_|_|_| 2"
+    puts "|_|_|_| 3"
+    puts " A B C"
   end
 
   def check_win
