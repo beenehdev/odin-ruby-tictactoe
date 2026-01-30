@@ -1,25 +1,31 @@
 # frozen_string_literal: true
 
-# documentation
-class Board
-  def initialize
-    @moves = []
-  end
+module TicTacToe
+  # documentation
+  class Board
+    def initialize
+      @moves = []
+      @board_variable = Array.new(3) { Array.new(3, "_") }
+    end
 
-  def assign_play_input
-    board_variable = Array.new(3) { Array.new(3, :_) }
-  end
+    def validate_move(player_input)
+      @moves.includes?(player_input) ? false : @moves << player_input
+    end
 
-  def draw_board
-    # pseudocode puts
-    puts " _ _ _"
-    puts "|_|_|_| 1"
-    puts "|_|_|_| 2"
-    puts "|_|_|_| 3"
-    puts " A B C"
-  end
+    def assign_play_input(play)
+    end
 
-  def check_win
-    aa
+    def draw_board
+      # pseudocode puts
+      puts " _ _ _"
+      puts "|_|_|_| A"
+      puts "|_|_|_| B"
+      puts "|_|_|_| C"
+      puts " 1 2 3"
+    end
+
+    def check_win
+      aa
+    end
   end
 end
