@@ -5,14 +5,24 @@ module TicTacToe
   class Board
     def initialize
       @moves = []
-      @board_variable = Array.new(3) { Array.new(3, "_") }
+      @board_array = Array.new(3) { Array.new(3, "_") }
+    end
+
+    def translate_input
+      # destructuring assignment for index?
+      @column = {a, b, c = 0, 1, 2}
+      @row = {1, 2, 3 = 0, 1, 2}
     end
 
     def validate_move(player_input)
-      @moves.includes?(player_input) ? false : @moves << player_input
+      result = !@moves.include?(player_input)
+      @moves << player_input if result
+      result
     end
 
     def assign_play_input(play)
+      translate_input(play)
+      @board_array[@column][@row] = PLAYERFLAGVARIABLE?
     end
 
     def draw_board
