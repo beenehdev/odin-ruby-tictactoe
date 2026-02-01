@@ -3,15 +3,16 @@
 module TicTacToe
   # documentation
   class Board
+    attr_reader :board
+
     def initialize
       @moves = []
-      @board_array = Array.new(3) { Array.new(3, "_") }
+      @board = Array.new(3) { Array.new(3, "_") }
     end
 
-    def translate_input
-      # destructuring assignment for index?
-      @column = {a, b, c = 0, 1, 2}
-      @row = {1, 2, 3 = 0, 1, 2}
+    def translate_input(input)
+      @col = input.ord - "A".ord
+      @row = input[1].to_i - 1
     end
 
     def validate_move(player_input)
@@ -20,22 +21,18 @@ module TicTacToe
       result
     end
 
-    def assign_play_input(play)
+    def assign_input(play, player_flag)
       translate_input(play)
-      @board_array[@column][@row] = PLAYERFLAGVARIABLE?
+      @board[@col][@row] = player_flag
     end
 
     def draw_board
-      # pseudocode puts
-      puts " _ _ _"
-      puts "|_|_|_| A"
-      puts "|_|_|_| B"
-      puts "|_|_|_| C"
-      puts " 1 2 3"
-    end
+      puts "  1 2 3"
 
-    def check_win
-      aa
+      @board.each_with_index do |row, index|
+        label = ("A".ord + index).chr
+        puts "#{label} #{row.join('|')}"
+      end
     end
   end
 end

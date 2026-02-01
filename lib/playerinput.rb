@@ -6,13 +6,12 @@ module TicTacToe
     attr_reader :play
 
     def initialize
-      @play = nil
+      @play
     end
 
     def ask_player
       @play = gets.chomp
-      @play = @play[0, 2].upcase
-      # Guard for other edge cases
+      @play = @play.upcase
     end
 
     def validate_input?
