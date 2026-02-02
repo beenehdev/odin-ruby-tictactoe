@@ -26,6 +26,12 @@ module TicTacToe
     end
 
     def win?(board)
+      win = false
+      board.board.each_with_array do |row, index|
+        # Row solution
+        win = true if row.all? == "X" || row.all == "O"
+        # Column solution
+      end
     end
   end
 end
