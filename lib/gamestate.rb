@@ -36,9 +36,5 @@ module TicTacToe
     def win_game
       puts "Player #{@player_flag} emerges victorious!"
     end
-
-    def draw_game
-      puts "Nobody won, cringe."
-    end
   end
 end

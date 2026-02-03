@@ -8,36 +8,38 @@ board = TicTacToe::Board.new
 player_input = TicTacToe::PlayerInput.new
 game_state = TicTacToe::GameState.new
 
-def validate_main(play, player_input, board)
-  arr = [player_input.validate_input?]
-  arr << board.validate_move(play)
+def valid_move?(play, player_input, board)
+  player_input.validate_input?(play) && board.validate_move(play)
+end
+
+def play_turn(player_input, board, game_state)
+  play = player_input.ask_player
+
+  unless valid_move?(play, player_input, board)
+    warn 'Invalid move. Use LETTER-NUMBER format, like "B1".'
+    return
+  end
+
+  board.assign_input(play, game_state.player_flag)
+  board.draw_board
+
+  if game_state.win?(board.board)
+    game_state.win_game
+    return :win
+  end
+
+  game_state.start_turn
 end
 
 def main(player_input, board, game_state)
   board.draw_board
+  game_state.start_turn
 
   loop do
-    if game_state.turn_counter == 9
-      puts "Draw game!"
-      return
-    end
+    result = play_turn(player_input, board, game_state)
 
-    win = true if game_state.win?(board.board)
-    if win
-      game_state.win_game
-      return
-    end
-
-    game_state.start_turn
-
-    play = player_input.ask_player
-    unless validate_main(play, player_input, board).all?
-      warn "Invalid move. Use LETTER-NUMBER format. Like \"B1\"."
-      next
-    end
-
-    board.assign_input(play, game_state.player_flag)
-    board.draw_board
+    break puts("Draw game!") if game_state.turn_counter == 9
+    break if result == :win
   end
 end
 
