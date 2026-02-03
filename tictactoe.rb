@@ -14,21 +14,30 @@ def validate_main(play, player_input, board)
 end
 
 def main(player_input, board, game_state)
+  board.draw_board
+
   loop do
-    game_state.switch_turn
-    break if game_state.turn_counter > 9
+    if game_state.turn_counter == 9
+      puts "Draw game!"
+      return
+    end
+
+    win = true if game_state.win?(board.board)
+    if win
+      game_state.win_game
+      return
+    end
+
+    game_state.start_turn
 
     play = player_input.ask_player
     unless validate_main(play, player_input, board).all?
-      warn "Invalid move. Use LETTER-NUMBER format. Like \"B1\""
+      warn "Invalid move. Use LETTER-NUMBER format. Like \"B1\"."
       next
     end
 
     board.assign_input(play, game_state.player_flag)
     board.draw_board
-
-    game_state.win?(board.board)
-    # Puts player win if win detected
   end
 end
 

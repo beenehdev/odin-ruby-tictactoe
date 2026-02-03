@@ -10,6 +10,7 @@ module TicTacToe
     end
 
     def ask_player
+      puts "Enter a letter and number to select a square to play."
       @play = gets.chomp
       @play = @play.upcase
     end

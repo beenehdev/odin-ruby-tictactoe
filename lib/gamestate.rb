@@ -6,32 +6,39 @@ module TicTacToe
     attr_reader :player_flag, :turn_counter
 
     def initialize
-      @player_flag = "X"
-      @turn_counter = 1
+      @player_flag = "O"
+      @turn_counter = 0
     end
 
     def switch_player_flag
       @player_flag = @player_flag == "X" ? "O" : "X"
     end
 
-    def count_turn
-      @turn_counter += 1
-    end
-
-    def switch_turn
+    def start_turn
       switch_player_flag
-      count_turn
-      puts "Turn: #{@turn_counter}"
-      puts "Player #{@player_flag}'s turn!"
+      @turn_counter += 1
+      puts "Turn #{@turn_counter}, Player #{@player_flag}'s turn."
     end
 
     def win?(board)
-      win = false
-      board.board.each_with_array do |row, index|
-        # Row solution
-        win = true if row.all? == "X" || row.all == "O"
-        # Column solution
-      end
+      lines = []
+
+      lines.concat(board)
+
+      lines.concat(board.transpose)
+
+      lines << [board[0][0], board[1][1], board[2][2]]
+      lines << [board[0][2], board[1][1], board[2][0]]
+
+      lines.any? { |line| line.all?("X") || line.all?("O") }
+    end
+
+    def win_game
+      puts "Player #{@player_flag} emerges victorious!"
+    end
+
+    def draw_game
+      puts "Nobody won, cringe."
     end
   end
 end
